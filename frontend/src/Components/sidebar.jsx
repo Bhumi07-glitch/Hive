@@ -43,7 +43,7 @@ function SideBar() {
             </div>
           </div>
         }
-        <div className="text-heading text-[16px] pl-4 pr-4 pt-4 border-t border-gray-800 font-mono flex-1 space-y-2">
+        <div className={`text-heading text-[16px] pl-4 pr-4 pt-4 border-t border-gray-800 font-mono flex flex-col space-y-2 `}>
 
           <a href="#Dashboard" className="gap-2 flex items-center h-10 px-3 rounded-lg outline-none focus:border focus:border-border focus:text-gold hover:bg-gray-800/50 transition-colors">
             <LayoutDashboard size={16} />
