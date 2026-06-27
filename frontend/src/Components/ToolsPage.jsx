@@ -1,14 +1,16 @@
 import {useState} from 'react';
 import {Search ,Menu ,X} from 'lucide-react';
-import SideBar from '/sidebar.jsx';
-import SearchBar from '/searchBar.jsx';
+import SideBar from './sidebar';
+import SearchBar from './searchBar';
+
+//i am not adding any images to this PR as this data will be fetched from the backend and the database in the future.
 
 const tools = [
   {
     id: 1,
     name: "Soldering Iron Kit",
     description: "Temperature controlled soldering station with accessories",
-    image: solderingIron,
+    image: null ,
     available: 8,
     status: "AVAILABLE",
   },
@@ -16,7 +18,7 @@ const tools = [
     id: 2,
     name: "Digital Multimeter",
     description: "Auto-ranging multimeter for voltage, current, resistance measurement",
-    image: multimeter,
+    image: null,
     available: 15,
     status: "AVAILABLE",
   },
@@ -24,7 +26,7 @@ const tools = [
     id: 3,
     name: "Oscilloscope",
     description: "Digital storage oscilloscope, 100MHz bandwidth",
-    image: oscilloscope,
+    image: null,
     available: 4,
     status: "LIMITED",
   },
@@ -32,7 +34,7 @@ const tools = [
     id: 4,
     name: "3D Printer",
     description: "FDM 3D printer with 220x220x250mm build volume",
-    image: printer3d,
+    image: null,
     available: 3,
     status: "LIMITED",
   },
@@ -40,7 +42,7 @@ const tools = [
     id: 5,
     name: "Wire Stripper",
     description: "Automatic wire stripping tool for various gauges",
-    image: wireStripper,
+    image: null,
     available: 12,
     status: "AVAILABLE",
   },
@@ -48,7 +50,7 @@ const tools = [
     id: 6,
     name: "Power Supply",
     description: "Adjustable DC bench power supply, 0-30V, 0-10A",
-    image: powerSupply,
+    image: null,
     available: 10,
     status: "AVAILABLE",
   },
@@ -56,7 +58,7 @@ const tools = [
     id: 7,
     name: "esp32",
     description: "Low-cost, low-power system-on-chip (SoC) with integrated Wi-Fi and Bluetooth",
-    image: "https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32d_0.png",
+    image: null,
     available: 15,
     status: "AVAILABLE",
 },
@@ -64,7 +66,7 @@ const tools = [
     id: 8,
     name: "L298N motor driver",
     description: "Dual H-Bridge motor driver for controlling DC motors and stepper motors",
-    image: "https://components101.com/sites/default/files/component_pin/L298N-Motor-Driver-Module-Pinout.png",
+    image: null,
     available: 8,
     status: "AVAILABLE",
 },
@@ -85,30 +87,16 @@ function StatusBadge({ status }) {
   );
 }
 
-function StatusBadge({status})
-{
-  const isAvailabele = status === "AVAILABLE";
-  return (
-    <span className ={
-      isAvailabele
-        ? "bg-[#064E3B] text-[#34D399]"
-        : "bg-[#78350F] text-[#F59E0B]"
-    }>
-      {status}
-    </span>
-  );
 
-}
-
-function toolCard({tool})
+function ToolCard({tool})
 {
   return (
-    <div className = "flex flex-col rounded-xl border border-gold/30 bg-surface p-4 transition-colorshover:border-gold/70">
+    <div className = "flex flex-col rounded-xl border border-gold/30 bg-surface p-4 transition-colors hover:border-gold/70">
     <img src ={tool.image || "/placeholder.svg"} alt = {tool.name} className ="h-44 w-full rounded-lg object-cover"
     />
 
     <h3 className='mt-4 text-lg font-semibold text-[#F9FAFB]'>{tool.name}</h3>
-    <p className='mt-1 text-sm leading-relasxed text-[#9CA3AF]'>{tool.description}</p>
+    <p className='mt-1 text-sm leading-relaxed text-[#9CA3AF]'>{tool.description}</p>
 
     <div className="mt-4 flex items-center justify-between">
         <span className="font-mono text-xs text-[#9CA3AF]">
@@ -135,8 +123,99 @@ function toolCard({tool})
 }
 
 function ToolsPage() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [query, setQuery] = useState("");
+
+  const filteredTools = tools.filter(
+    (tool) =>
+      tool.name.toLowerCase().includes(query.toLowerCase()) ||
+      tool.description.toLowerCase().includes(query.toLowerCase())
+  );
   return (
     <>
+    
+
+      {/* The mobile sidebar functionality is to be added into the sidebar component itself this is just a temporay solution */}
+    <div className="flex h-dvh w-full overflow-hidden bg-bg">
+      {/* Desktop sidebar */}
+      <div className="hidden shrink-0 md:block">
+        <SideBar />
+      </div>
+
+    {/* //mobile sidebar */}
+
+      {sidebarOpen && (
+        <div className="fixed inset-0 z-50 flex md:hidden">
+          <div
+            className="absolute inset-0 bg-black/60"
+            onClick={() => setSidebarOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="relative z-10">
+            <SideBar />
+            <button
+              type="button"
+              onClick={() => setSidebarOpen(false)}
+              className="absolute right-3 top-6 text-gray-400 hover:text-white"
+              aria-label="Close menu"
+            >
+              <X size={22} />
+            </button>
+          </div>
+        </div>
+      )}
+      <div className="flex min-w-0 flex-1 flex-col">
+
+        <header className="relative flex h-16 shrink-0 items-center justify-between border-b border-gray-800 px-4">
+          <button
+            type="button"
+            onClick={() => setSidebarOpen(true)}
+            className="text-white md:hidden"
+            aria-label="Open menu"
+          >
+            <Menu size={24} />
+          </button>
+
+          <div className="hidden md:block">
+            <SearchBar />
+          </div>
+
+        </header>
+
+
+        <main className="flex-1 overflow-y-auto px-4 py-6 md:px-8">
+          <h1 className="text-2xl font-bold text-white">Tools</h1>
+          <p className="mt-1 text-sm text-[#9CA3AF]">
+            Browse available tools and equipment
+          </p>
+
+
+          <div className="mt-5 flex max-w-md items-center rounded-md border border-[#5c462b] bg-[#16120e] px-3 py-2">
+            <Search size={16} className="mr-2.5 shrink-0 text-[#a69580]" />
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search tools..."
+              className="w-full border-none bg-transparent text-sm text-white outline-none placeholder:text-[#a69580]/80"
+            />
+          </div>
+
+          <div className="mt-6 mx-4
+           grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredTools.map((tool) => (
+              <ToolCard key={tool.id} tool={tool} />
+            ))}
+          </div>
+
+          {filteredTools.length === 0 && (
+            <p className="mt-10 text-center text-sm text-[#9CA3AF]">
+              No tools found matching your search.
+            </p>
+          )}
+        </main>
+      </div>
+    </div>
 
 
 
