@@ -3,7 +3,6 @@ import Sidebar from './Components/sidebar';
 import SearchBar from './Components/searchBar';
 import notificationComponent from './Components/notificationComponent';
 import LoginPage from './Components/loginPage';
-import NotificationPage from './Components/NotificationPage';
 
 function App() {
   return (
@@ -16,7 +15,7 @@ function App() {
 
         </div>
       </div> */}
-       <NotificationPage/>
+      
     </>
   );
  
