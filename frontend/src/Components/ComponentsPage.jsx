@@ -1,9 +1,5 @@
 import { useState } from 'react';
-import { Search, Menu, X } from 'lucide-react';
-import SideBar from './sidebar';
-import SearchBar from './searchBar';
-
-// i am using the dataset used in the toolpage as this is just a temporary provision
+import { Search } from 'lucide-react';
 
 const componentsData = [
   {
@@ -107,7 +103,6 @@ function ComponentCard({ component }) {
 }
 
 function ComponentPage() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [query, setQuery] = useState("");
 
   const filteredComponents = componentsData.filter((comp) =>
@@ -116,83 +111,36 @@ function ComponentPage() {
   );
 
   return (
-    //  this is just a temporrary provision to make the sidebar aand the searchbar responsive 
-      <div className="flex h-dvh w-full overflow-hidden bg-bg">
-        {/* Desktop sidebar */}
-        <div className="hidden shrink-0 md:block">
-          <SideBar />
-        </div>
+    <main className="flex-1 overflow-y-auto bg-bg px-4 py-6 md:px-8">
+      <h1 className="text-2xl font-bold text-white">Components</h1>
+      <p className="mt-1 text-sm text-[#9CA3AF]">
+        Browse available Components
+      </p>
 
-        {/* Mobile sidebar */}
-        {sidebarOpen && (
-          <div className="fixed inset-0 z-50 flex md:hidden">
-            <div
-              className="absolute inset-0 bg-black/60"
-              onClick={() => setSidebarOpen(false)}
-              aria-hidden="true"
-            />
-            <div className="relative z-10">
-              <SideBar />
-              <button
-                type="button"
-                onClick={() => setSidebarOpen(false)}
-                className="absolute right-3 top-6 text-gray-400 hover:text-white"
-                aria-label="Close menu"
-              >
-                <X size={22} />
-              </button>
-            </div>
-          </div>
-        )}
-        
-        <div className="flex min-w-0 flex-1 flex-col">
-          <header className="relative flex h-16 shrink-0 items-center justify-between border-b border-gray-800 px-4">
-            <button
-              type="button"
-              onClick={() => setSidebarOpen(true)}
-              className="text-white md:hidden"
-              aria-label="Open menu"
-            >
-              <Menu size={24} />
-            </button>
-
-            <div className="hidden md:block">
-              <SearchBar />
-            </div>
-          </header>
-
-          <main className="flex-1 overflow-y-auto px-4 py-6 md:px-8">
-            <h1 className="text-2xl font-bold text-white">Components</h1>
-            <p className="mt-1 text-sm text-[#9CA3AF]">
-              Browse available Components
-            </p>
-
-            <div className="mt-5 flex max-w-md items-center rounded-md border border-[#5c462b] bg-[#16120e] px-3 py-2">
-              <Search size={16} className="mr-2.5 shrink-0 text-[#a69580]" />
-              <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search components..."
-                className="w-full border-none bg-transparent text-sm text-white outline-none placeholder:text-[#a69580]/80"
-              />
-            </div>
-
-            <div className="mt-6 mx-4 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredComponents.map((component) => (
-                <ComponentCard key={component.id} component={component} />
-              ))}
-            </div>
-
-            {filteredComponents.length === 0 && (
-              <p className="mt-10 text-center text-sm text-[#9CA3AF]">
-                No Components found matching your search.
-              </p>
-            )}
-          </main>
-        </div>
+      {/* Local Component Filter */}
+      <div className="mt-5 flex max-w-md items-center rounded-md border border-[#5c462b] bg-[#16120e] px-3 py-2">
+        <Search size={16} className="mr-2.5 shrink-0 text-[#a69580]" />
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Filter components..."
+          className="w-full border-none bg-transparent text-sm text-white outline-none placeholder:text-[#a69580]/80"
+        />
       </div>
-    
+
+      <div className="mt-6 mx-4 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {filteredComponents.map((component) => (
+          <ComponentCard key={component.id} component={component} />
+        ))}
+      </div>
+
+      {filteredComponents.length === 0 && (
+        <p className="mt-10 text-center text-sm text-[#9CA3AF]">
+          No Components found matching your search.
+        </p>
+      )}
+    </main>
   );
 }
 
