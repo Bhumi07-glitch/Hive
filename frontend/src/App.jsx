@@ -16,23 +16,15 @@ function App() {
 
         </div>
       </div> */}
-      <div className="flex w-screen h-screen overflow-hidden bg-[#0a0a0a] text-white font-sans">
+     <div className="flex w-screen h-screen overflow-hidden bg-[#0a0a0a]">
       <Sidebar active="notifications" />
-    
-      <div className="flex-1 h-full flex flex-col overflow-hidden">
-
-        <div className="w-full flex items-center justify-between p-6 pb-2 shrink-0 bg-[#0a0a0a]">
-          <SearchBar />
-        </div>
-        
-        <div className="flex-1 overflow-y-auto px-6 pb-6 w-full max-w-[950px] mx-auto">
-          <NotificationPage />
-        </div>
-
+      <div className="flex-1 h-full overflow-y-auto p-6 flex flex-col items-start space-y-6">
+        <SearchBar />
+        <NotificationPage />
       </div>
     </div>
     </>
   );
  
 }
-export default App
+export default App;
