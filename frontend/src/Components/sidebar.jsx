@@ -45,27 +45,27 @@ function SideBar() {
         }
         <div className={`text-heading text-[16px] pl-4 pr-4 pt-4 border-t border-gray-800 font-mono flex flex-col space-y-2 `}>
 
-          <a href="/" className="gap-2 flex items-center h-10 px-3 rounded-lg outline-none focus:border focus:border-border focus:text-gold hover:bg-gray-800/50 transition-colors">
+          <a href="/" className="gap-2 flex items-center h-10 px-3 rounded-lg outline-none focus:border focus:border-border focus:text-gold hover:bg-gray-800/50 transition-colors justify-center">
             <LayoutDashboard size={16} />
             {!isCollapsed && <div> Dashboard</div>}
           </a>
-          <a href="/components" className="gap-2 flex items-center h-10 px-3 rounded-lg outline-none focus:border focus:border-border focus:text-gold hover:bg-gray-800/50 transition-colors">
+          <a href="/components" className="gap-2 flex items-center h-10 px-3 rounded-lg outline-none focus:border focus:border-border focus:text-gold hover:bg-gray-800/50 transition-colors justify-center">
             <Package size={16} />
             {!isCollapsed && <div> Components</div>}
           </a>
-          <a href="/tools" className="gap-2 flex items-center h-10 px-3 rounded-lg outline-none focus:border focus:border-border focus:text-gold hover:bg-gray-800/50 transition-colors">
+          <a href="/tools" className="gap-2 flex items-center h-10 px-3 rounded-lg outline-none focus:border focus:border-border focus:text-gold hover:bg-gray-800/50 transition-colors justify-center">
             <Wrench size={16} />
             {!isCollapsed && <div> Tools</div>}
           </a>
-          <a href="/history" className="gap-2 flex items-center h-10 px-3 rounded-lg outline-none focus:border focus:border-border focus:text-gold hover:bg-gray-800/50 transition-colors">
+          <a href="/history" className="gap-2 flex items-center h-10 px-3 rounded-lg outline-none focus:border focus:border-border focus:text-gold hover:bg-gray-800/50 transition-colors justify-center ">
             <History size={16} />
             {!isCollapsed && <div> History</div>}
           </a>
-          <a href="/reports" className="gap-2 flex items-center h-10 px-3 rounded-lg outline-none focus:border focus:border-border focus:text-gold hover:bg-gray-800/50 transition-colors">
+          <a href="/reports" className="gap-2 flex items-center h-10 px-3 rounded-lg outline-none focus:border focus:border-border focus:text-gold hover:bg-gray-800/50 transition-colors justify-center">
             <ChartColumn size={16} />
             {!isCollapsed && <div> Reports</div>}
           </a>
-          <a href="/notifications" className="gap-2 flex items-center h-10 px-3 rounded-lg outline-none focus:border focus:border-border focus:text-gold hover:bg-gray-800/50 transition-colors">
+          <a href="/notifications" className="gap-2 flex items-center h-10 px-3 rounded-lg outline-none focus:border focus:border-border focus:text-gold hover:bg-gray-800/50 transition-colors justify-center">
             <Bell size={16} />
             {!isCollapsed && <div> Notifications</div>}
           </a>
