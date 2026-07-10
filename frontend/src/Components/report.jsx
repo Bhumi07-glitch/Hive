@@ -37,7 +37,7 @@ const ReportPage = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <div>
-          <div className="rounded-md border border-fg flex items-center p-7 gap-4 w-full bg-card">
+          <div className="rounded-md border border-gold flex items-center p-7 gap-4 w-full bg-card">
             <ChartColumn
               size={40}
               className="text-[#0A819A] p-2 bg-[#102838] rounded-md"
@@ -50,7 +50,7 @@ const ReportPage = () => {
         </div>
         {/*  */}
         <div>
-          <div className="rounded-md border border-fg flex items-center p-7 gap-4 w-full bg-card">
+          <div className="rounded-md border border-gold flex items-center p-7 gap-4 w-full bg-card">
             <TrendingUp
               size={40}
               className="text-[#10B67F] p-2 bg-[#064E3B] rounded-md"
@@ -63,7 +63,7 @@ const ReportPage = () => {
         </div>
         {/*  */}
         <div>
-          <div className="rounded-md border border-fg flex items-center p-7 gap-4 w-full bg-card">
+          <div className="rounded-md border border-gold flex items-center p-7 gap-4 w-full bg-card">
             <CircleAlert
               size={40}
               className="text-[#A75C0E] p-2 bg-[#78350F] rounded-md"
@@ -76,7 +76,7 @@ const ReportPage = () => {
         </div>
         {/*  */}
         <div>
-          <div className="rounded-md border border-fg flex items-center p-7 gap-4 w-full bg-card">
+          <div className="rounded-md border border-gold flex items-center p-7 gap-4 w-full bg-card">
             <Award
               size={40}
               className="text-[#336DCE] p-2 bg-[#15233C] rounded-md"
@@ -92,7 +92,7 @@ const ReportPage = () => {
       {/*  */}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-heading mb-8">
-        <div className="bg-card border border-heading rounded-xl p-6 transition-all duration-200  ">
+        <div className="bg-card border border-gold rounded-xl p-6 transition-all duration-200  ">
           <div className="mb-4 ">
             <h3 className="text-lg font-semibold text-heading ">Punctuality</h3>
           </div>
@@ -117,7 +117,7 @@ const ReportPage = () => {
             </div>
           </div>
         </div>
-        <div className="bg-card border border-heading rounded-xl p-6 transition-all duration-200  ">
+        <div className="bg-card border border-gold rounded-xl p-6 transition-all duration-200  ">
           <div className="mb-4 ">
             <h3 className="text-lg font-semibold text-card-foreground ">
               Item Condition
@@ -147,7 +147,7 @@ const ReportPage = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-heading">
-        <div className="bg-card border border-heading rounded-xl p-6 transition-all duration-200  ">
+        <div className="bg-card border border-gold rounded-xl p-6 transition-all duration-200  ">
           <div className="mb-4 ">
             <h3 className="text-lg font-semibold text-card-foreground ">
               Borrow vs Return Trend
@@ -215,7 +215,7 @@ const ReportPage = () => {
             </div>
           </div>
         </div>
-        <div className="bg-card border border-heading rounded-xl p-6 transition-all duration-200  ">
+        <div className="bg-card border border-gold rounded-xl p-6 transition-all duration-200  ">
           <div className="mb-4 ">
             <h3 className="text-lg font-semibold text-card-foreground ">
               Return Condition Distribution
