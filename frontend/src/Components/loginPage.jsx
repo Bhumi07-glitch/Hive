@@ -12,16 +12,14 @@ import { useState } from "react";
 
 function LoginPage() {
   const [isSigningIn, setIsSigningIn] = useState(false);
-  const [isSigningUp, setIsSigningUp] = useState(false);
   const [authError, setAuthError] = useState("");
   const params = new URLSearchParams(window.location.search);
 
   const error = params.get("error");
 
   
-  const startGoogleAuth = async (requestSignUp) => {
-    const setLoading = requestSignUp ? setIsSigningUp : setIsSigningIn;
-    setLoading(true);
+  const startGoogleAuth = async () => {
+    setIsSigningIn(true);
     setAuthError("");
 
     try {
@@ -29,7 +27,6 @@ function LoginPage() {
       const { data, error } = await authClient.signIn.social({
         provider: "google",
         callbackURL,
-        requestSignUp,
       });
 
       if (error) {
@@ -212,9 +209,6 @@ function LoginPage() {
                     <ShieldCheck size={18} className="text-gold shrink-0" />
                     <div>
                       <p className="font-semibold text-fg">Google only access</p>
-                      <p className="text-xs text-fg/55">
-                        Password login is disabled. Use your Google account to sign in or create an account.
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -227,8 +221,8 @@ function LoginPage() {
 
                 <button
                   type="button"
-                  onClick={() => startGoogleAuth(false)}
-                  disabled={isSigningIn || isSigningUp}
+                  onClick={startGoogleAuth}
+                  disabled={isSigningIn}
                   className="group relative w-full overflow-hidden rounded-lg font-orbitron font-bold tracking-[0.15em] uppercase text-bg py-3 transition active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
                   style={{
                     background:
@@ -251,15 +245,6 @@ function LoginPage() {
                         "linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent)",
                     }}
                   />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => startGoogleAuth(true)}
-                  disabled={isSigningIn || isSigningUp}
-                  className="w-full rounded-lg border border-border/40 bg-bg/40 py-3 text-sm font-semibold tracking-[0.18em] uppercase text-fg/85 transition hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-70"
-                >
-                  {isSigningUp ? "Preparing account flow..." : "Create Account with Google"}
                 </button>
               </div>
             </div>
